@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2022-05-06T16:24:21Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>RHEL-Updates-Template</template>
+            <name>RHEL-Updates-Template</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>RH Updates</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>RH Updates: packages with bugfix issues</name>
+                    <type>TRAP</type>
+                    <key>rh.updates.bugfix</key>
+                    <delay>0</delay>
+                    <history>1d</history>
+                    <units>pkg</units>
+                    <applications>
+                        <application>
+                            <name>RH Updates</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{ITEM.LASTVALUE} Big Fix Upgrades on {HOST.NAME}</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>RH Updates: packages with critical security issues</name>
+                    <type>TRAP</type>
+                    <key>rh.updates.crit</key>
+                    <delay>0</delay>
+                    <history>1d</history>
+                    <units>pkg</units>
+                    <applications>
+                        <application>
+                            <name>RH Updates</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{ITEM.LASTVALUE} Critical Updates on {HOST.NAME}</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>RH Updates: packages with enhancement issues</name>
+                    <type>TRAP</type>
+                    <key>rh.updates.enh</key>
+                    <delay>0</delay>
+                    <history>1d</history>
+                    <units>pkg</units>
+                    <applications>
+                        <application>
+                            <name>RH Updates</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{ITEM.LASTVALUE} Enhancment Upgrades on {HOST.NAME}</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>RH Updates: packages with important security issues</name>
+                    <type>TRAP</type>
+                    <key>rh.updates.imp</key>
+                    <delay>0</delay>
+                    <history>1d</history>
+                    <units>pkg</units>
+                    <applications>
+                        <application>
+                            <name>RH Updates</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{ITEM.LASTVALUE} Important Updates on {HOST.NAME}</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>RH Updates: packages with low security issues</name>
+                    <type>TRAP</type>
+                    <key>rh.updates.low</key>
+                    <delay>0</delay>
+                    <history>1d</history>
+                    <units>pkg</units>
+                    <applications>
+                        <application>
+                            <name>RH Updates</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{ITEM.LASTVALUE} Low Security Upgrades on {HOST.NAME}</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>RH Updates: packages with moderate security issues</name>
+                    <type>TRAP</type>
+                    <key>rh.updates.mod</key>
+                    <delay>0</delay>
+                    <history>1d</history>
+                    <units>pkg</units>
+                    <applications>
+                        <application>
+                            <name>RH Updates</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{ITEM.LASTVALUE} Moderate Security Upgrades on {HOST.NAME}</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>RH Updates: packages with available updates</name>
+                    <type>TRAP</type>
+                    <key>rh.updates.total</key>
+                    <delay>0</delay>
+                    <history>1d</history>
+                    <units>Package</units>
+                    <applications>
+                        <application>
+                            <name>RH Updates</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{ITEM.LASTVALUE} Updates on {HOST.NAME}</name>
+                            <priority>AVERAGE</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+        </template>
+    </templates>
+    <graphs>
+        <graph>
+            <name>RH Updates: issues</name>
+            <show_work_period>NO</show_work_period>
+            <show_triggers>NO</show_triggers>
+            <graph_items>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>AC8C14</color>
+                    <item>
+                        <host>RHEL-Updates-Template</host>
+                        <key>rh.updates.total</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>BB0000</color>
+                    <item>
+                        <host>RHEL-Updates-Template</host>
+                        <key>rh.updates.crit</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>0000BB</color>
+                    <item>
+                        <host>RHEL-Updates-Template</host>
+                        <key>rh.updates.imp</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>4</sortorder>
+                    <color>00BB00</color>
+                    <item>
+                        <host>RHEL-Updates-Template</host>
+                        <key>rh.updates.mod</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>5</sortorder>
+                    <color>00C8C8</color>
+                    <item>
+                        <host>RHEL-Updates-Template</host>
+                        <key>rh.updates.low</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>6</sortorder>
+                    <color>BBBB00</color>
+                    <item>
+                        <host>RHEL-Updates-Template</host>
+                        <key>rh.updates.bugfix</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>7</sortorder>
+                    <color>DD00DD</color>
+                    <item>
+                        <host>RHEL-Updates-Template</host>
+                        <key>rh.updates.enh</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+    </graphs>
+</zabbix_export>
